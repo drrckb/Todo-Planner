@@ -1,0 +1,15 @@
+
+<form class="container">
+  <h1>TODO List</h1>
+  <p>A place to store the things you have to do!</p>
+  <input name="filter" placeholder="Search" class="filter" [(ngModel)]="filterText" (input)="filterTasks()">
+  <ul>
+    <li *ngFor="let task of filteredTasks; let i = index">
+      <button [ngClass]="{statusButton: task}" *ngIf="!task.completed" (click)="completeTask(task)">complete</button>
+      <span [ngClass]="{complete: task.completed}">{{ task.task }}</span>
+      <button [ngClass]="{remove: task}" (click)="removeTask(i)">X</button>
+    </li>
+  </ul>
+  <input name="task" placeholder="Task" class="add" [(ngModel)]="newTask">
+  <button type="button" class="submit" (click)="addTask()">Add</button>
+</form>
